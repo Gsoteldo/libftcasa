@@ -1,36 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gsoteldo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/13 12:42:46 by gsoteldo          #+#    #+#             */
-/*   Updated: 2023/09/18 17:51:12 by gsoteldo         ###   ########.fr       */
+/*   Created: 2023/09/15 17:13:42 by gsoteldo          #+#    #+#             */
+/*   Updated: 2023/09/15 17:38:42 by gsoteldo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+char	*ft_substr(char const *str, unsigned int start, size_t len)
 {
+	char	*ptr;
 	size_t	i;
-	size_t	contador;
 
-	i = 0;
-	contador = 0;
-	while (src[contador] != '\0')
+	ptr = malloc(len + 1);
+	i = start;
+	while (i < start + len)
 	{
-		contador++;
-	}
-	while ((src[i] != '\0') && i < dstsize - 1)
-	{
-		dst[i] = src[i];
+		ptr[i - start] = str[i];
 		i++;
 	}
-	while (i < dstsize)
-	{
-		dst[i] = '\0';
-		i++;
-	}
-	return (contador);
+	return (ptr);
 }

@@ -1,36 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gsoteldo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/13 12:42:46 by gsoteldo          #+#    #+#             */
-/*   Updated: 2023/09/18 17:51:12 by gsoteldo         ###   ########.fr       */
+/*   Created: 2023/09/15 18:28:47 by gsoteldo          #+#    #+#             */
+/*   Updated: 2023/09/18 18:25:17 by gsoteldo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
+#include <stdio.h>
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+char	*ft_strtrim(char const *s1, char const *set)
 {
-	size_t	i;
-	size_t	contador;
+	char	*ptr;
+	int		i;
+	int		j;
 
-	i = 0;
-	contador = 0;
-	while (src[contador] != '\0')
+	ptr = NULL;
+	if (s1 != 0 && set != 0)
 	{
-		contador++;
+		i = 0;
+		j = ft_strlen(s1);
+		while (s1[i] != '\0' && ft_strchr(set, s1[i]))
+		{
+			i++;
+		}
+		while (ft_strchr(set, s1[j - 1]) && (j > i))
+		{
+			j--;
+		}
+		ptr = (char *)malloc(sizeof(char) * (j - i + 1));
+		if (ptr)
+		{
+			ft_strlcpy(ptr, &s1[i], (j - i + 1));
+		}
 	}
-	while ((src[i] != '\0') && i < dstsize - 1)
-	{
-		dst[i] = src[i];
-		i++;
-	}
-	while (i < dstsize)
-	{
-		dst[i] = '\0';
-		i++;
-	}
-	return (contador);
+	return (ptr);
 }

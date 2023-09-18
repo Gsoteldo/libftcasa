@@ -6,7 +6,7 @@
 /*   By: gsoteldo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 13:52:06 by gsoteldo          #+#    #+#             */
-/*   Updated: 2023/09/13 17:45:59 by gsoteldo         ###   ########.fr       */
+/*   Updated: 2023/09/18 18:25:20 by gsoteldo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
@@ -24,9 +24,9 @@ char	*ft_strchr(const char *str, int c)
 		}
 		i++;
 	}
-	if (str[i] == '\0')
+	if (str[i] == '\0' && c == '\0')
 	{
 		return ((char *)str + i);
 	}
-	return ((char *)str);
+	return (0);
 }

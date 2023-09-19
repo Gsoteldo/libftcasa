@@ -6,7 +6,7 @@
 /*   By: gsoteldo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 18:28:05 by gsoteldo          #+#    #+#             */
-/*   Updated: 2023/09/18 18:34:26 by gsoteldo         ###   ########.fr       */
+/*   Updated: 2023/09/19 17:31:30 by gsoteldo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
@@ -35,6 +35,7 @@ char	**ft_mallocsize(char const *s, char c)
 	return (aux2);
 }
 //Reducir tamaño de ft_split
+
 char	**ft_split(char const *s, char c)
 {
 	size_t	len;
@@ -43,8 +44,6 @@ char	**ft_split(char const *s, char c)
 
 	len = 0;
 	i = 0;
-	if (!s)
-		return (0);
 	result = ft_mallocsize(s, c);
 	if (result == 0)
 		return (0);

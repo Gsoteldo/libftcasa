@@ -1,34 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gsoteldo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/15 17:56:49 by gsoteldo          #+#    #+#             */
-/*   Updated: 2023/09/15 18:27:25 by gsoteldo         ###   ########.fr       */
+/*   Created: 2023/09/19 15:55:54 by gsoteldo          #+#    #+#             */
+/*   Updated: 2023/09/19 17:25:00 by gsoteldo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
+#include <stdio.h>
 
-char	*ft_strjoin(char const *s1, char const *s2)
+int	isnegative(int n)
 {
-	char	*ptr;
-	size_t	i;
-	size_t	j;
+	if (n < 0)
+	{
+		write(1, "-", 1);
+		n = n * -1;
+	}
+	return (n);
+}
 
-	ptr = malloc(ft_strlen(s1) + ft_strlen(s2));
-	i = 0;
-	j = 0;
-	while (s1[i] != '\0')
+char	*ft_itoa(int n)
+{
+	int		num;
+	size_t	cont;
+	char	*str;
+
+	cont = 0;
+	str = NULL;
+	n = isnegative(n);
+	num = n;
+	while (num != 0)
 	{
-		ptr[i] = s1[i];
-		i++;
+			num /= 10;
+			cont++;
 	}
-	while (s2[j] != '\0')
+	str = malloc((cont + 1) * sizeof(char *));
+	while (cont != 0)
 	{
-	ptr[i + j] = s2[j];
-	j++;
+		str[cont - 1] = n % 10 + '0';
+		n = n / 10;
+		cont--;
 	}
-	return (ptr);
+	return (str);
 }

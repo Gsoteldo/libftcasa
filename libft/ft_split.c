@@ -9,30 +9,58 @@
 /*   Updated: 2023/09/18 18:34:26 by gsoteldo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#innclude "libft.h"
+#include "libft.h"
 
+char	**ft_mallocsize(char const *s, char c)
+{
+	char	*aux;
+	char	**aux2;
+	int		cont;
+
+	aux = (char *)s;
+	cont = 0;
+	while (*aux)
+	{
+		while (*aux == c)
+			aux++;
+		if (*aux != '\0')
+			cont++;
+		while (*aux != c && *aux)
+			aux++;
+	}
+	aux2 = (char **)malloc((cont + 1) * sizeof(char *));
+	if (aux == 0)
+		return (0);
+	aux2[cont] = 0;
+	return (aux2);
+}
+//Reducir tamaño de ft_split
 char	**ft_split(char const *s, char c)
 {
-	size_t i;
-	size_t j
-	int	cont;
+	size_t	len;
+	char	**result;
+	int		i;
 
+	len = 0;
 	i = 0;
-	cont = 0;
-	while(s[i] != '\0')
+	if (!s)
+		return (0);
+	result = ft_mallocsize(s, c);
+	if (result == 0)
+		return (0);
+	while (*s)
 	{
-		if(s[i] == c)
+		while (*s == c)
+			s++;
+		if (*s != '\0')
 		{
-		cont++;
+			while (s[len] != c && s[len])
+				len++;
+			result[i++] = ft_substr(s, 0, len);
+			s += len;
 		}
+		len = 0;
 	}
-	while()
-}
-
-int main()
-{
-	char	*frase = "hola mundo";
-	char	sep = ' ';
-	
-	return 0;
+	result[i] = 0;
+	return (result);
 }

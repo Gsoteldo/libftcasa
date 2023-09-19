@@ -27,8 +27,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	}
 	while (s2[j] != '\0')
 	{
-	ptr[i + j] = s2[j];
-	j++;
+		ptr[i + j] = s2[j];
+		j++;
 	}
 	return (ptr);
 }

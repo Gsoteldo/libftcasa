@@ -25,19 +25,14 @@ int main()
 {
     t_list *lst;
     t_list *last;
-    t_list *new;
 
     lst = ft_lstnew("first");
-    new = ft_lstnew("second");
-//    ft_lstadd_front(&lst, new);
-    new = ft_lstnew("third");
-//    ft_lstadd_front(&lst, new);
-    new = ft_lstnew("fourth");
-  //  ft_lstadd_front(&lst, new);
-    new = ft_lstnew("fifth");
-    //ft_lstadd_front(&lst, new);
+    lst->next = ft_lstnew("second");
+    lst->next->next = ft_lstnew("third");
+    lst->next->next->next = ft_lstnew("fourth");
+    lst->next->next->next->next = ft_lstnew("fifth");
     last = ft_lstlast(lst);
-    printf("%s\n", last->content);
+    printf("%s\n", (char *)last->content);
     return (0);
 }
 */

@@ -10,9 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
-#include <stdio.h>
 
-int	isnegative(int n)
+static int	isnegative(int n)
 {
 	if (n < 0)
 	{

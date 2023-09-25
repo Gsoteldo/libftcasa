@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: gsoteldo <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/09/25 19:34:12 by gsoteldo          #+#    #+#              #
+#    Updated: 2023/09/25 19:37:35 by gsoteldo         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 SRC = 	ft_atoi.c \
 		ft_bzero.c \
 		ft_calloc.c \
@@ -38,11 +50,9 @@ OBJ = $(SRC:.c=.o)
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
-library = libft
-NAME = $(library).a
+NAME = libft.a
 
-$(NAME): 
-	$(CC) $(CFLAGS) -c $(SRC) -I.\
+$(NAME): $(OBJ)
 	ar rc $(NAME) $(OBJ)
 
 all: $(NAME)

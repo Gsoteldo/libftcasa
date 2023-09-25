@@ -6,7 +6,7 @@
 /*   By: gsoteldo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 17:30:04 by gsoteldo          #+#    #+#             */
-/*   Updated: 2023/09/20 17:54:29 by gsoteldo         ###   ########.fr       */
+/*   Updated: 2023/09/25 19:43:26 by gsoteldo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
@@ -18,7 +18,8 @@ void	ft_putnbr_fd(int n, int fd)
 
 	if (n == -2147483648)
 	{
-		write(fd, "-2147483648", 11);
+		ft_putstr_fd("-2147483648", fd);
+		return ;
 	}
 	if (n < 0)
 	{
@@ -34,5 +35,5 @@ void	ft_putnbr_fd(int n, int fd)
 		ft_putnbr_fd(num / 10, fd);
 	}
 	aux = num % 10 + '0';
-	write(fd, &aux, 1);
+	ft_putchar_fd(aux, fd);
 }

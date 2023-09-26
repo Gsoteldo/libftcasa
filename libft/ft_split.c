@@ -6,11 +6,10 @@
 /*   By: gsoteldo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 18:28:05 by gsoteldo          #+#    #+#             */
-/*   Updated: 2023/09/19 17:31:30 by gsoteldo         ###   ########.fr       */
+/*   Updated: 2023/09/26 17:36:19 by gsoteldo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
-#include <stdio.h>
 
 static char	**ft_mallocsize(char const *s, char c)
 {
@@ -35,7 +34,6 @@ static char	**ft_mallocsize(char const *s, char c)
 	aux2[cont] = 0;
 	return (aux2);
 }
-//Reducir tamaño de ft_split
 
 char	**ft_split(char const *s, char c)
 {

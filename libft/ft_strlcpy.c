@@ -6,7 +6,7 @@
 /*   By: gsoteldo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 12:42:46 by gsoteldo          #+#    #+#             */
-/*   Updated: 2023/09/25 20:14:12 by gsoteldo         ###   ########.fr       */
+/*   Updated: 2023/09/26 17:37:54 by gsoteldo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
@@ -18,7 +18,7 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 
 	i = 0;
 	contador = 0;
-	if(dstsize == 0)
+	if (dstsize == 0)
 	{	
 		contador = ft_strlen(src);
 		return (contador);

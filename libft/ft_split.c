@@ -10,8 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
+#include <stdio.h>
 
-char	**ft_mallocsize(char const *s, char c)
+static char	**ft_mallocsize(char const *s, char c)
 {
 	char	*aux;
 	char	**aux2;

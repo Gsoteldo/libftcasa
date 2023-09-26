@@ -1,5 +1,4 @@
 #include "libft.h"
-#include <stdio.h>
 
 t_list *ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
@@ -13,7 +12,7 @@ t_list *ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
     {
         if (!(nuevo = ft_lstnew(f(lst->content))))
         {
-            while (primero != 0)
+            while (primero)
             {
                 nuevo = primero->next;
                 del(primero->content);

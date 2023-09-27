@@ -6,20 +6,20 @@
 /*   By: gsoteldo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 18:28:05 by gsoteldo          #+#    #+#             */
-/*   Updated: 2023/09/26 17:36:19 by gsoteldo         ###   ########.fr       */
+/*   Updated: 2023/09/27 20:59:16 by gsoteldo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-static void	ft_free(char *result)
+static void	ft_free(char **result, int i)
 {
-	int i;
+	int j;
 
-	i = 0;
-	while (result[i] != '\0')
+	j = 0;
+	while (i > j)
 	{
-		free(result);
-		i++;
+		free(result[j]);
+		j++;
 	}
 	free(result);
 }
@@ -92,7 +92,7 @@ char	**ft_split(char const *s, char c)
 	int 	j;
 	int		pos;
 
-	if(s == 0 || c == 0)
+	if(s == 0)
 		return (0);
 	pos = 0;
 	i = 0;
@@ -103,10 +103,13 @@ char	**ft_split(char const *s, char c)
 	result[j] = 0;
 	while (i < j)
 	{
+		while(s[i] == c)
+			pos++;
 		result[i] = ft_mallocsize(s, c, &pos);
 		if (result[i] == 0)
 		{
-			ft_free(result[i]);
+			ft_free(result, i);
+			return (0);
 		}
 		i++;
 	}

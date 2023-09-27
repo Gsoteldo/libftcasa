@@ -11,36 +11,50 @@
 /* ************************************************************************** */
 #include "libft.h"
 
-static int	isnegative(int n)
+static unsigned int	ft_tamanyo(int number)
 {
-	if (n < 0)
+	size_t	length;
+	
+	length = 0;
+	if (number == 0)
+		return (1);
+	if (number < 0)
+		length += 1;
+	while (number != 0)
 	{
-		write(1, "-", 1);
-		n = n * -1;
+
+		number /= 10;
+		length++;
 	}
-	return (n);
+	return (length);
 }
 
 char	*ft_itoa(int n)
 {
-	int		num;
-	size_t	cont;
+	unsigned int	num;
+	unsigned int	cont;
 	char	*str;
 
-	cont = 0;
-	str = NULL;
-	n = isnegative(n);
-	num = n;
+	cont = ft_tamanyo(n);
+	str = malloc((cont + 1) * sizeof(char *));
+	if (str == 0)
+	{
+		return (0);
+	}
+	if (n < 0)
+	{
+		str[0] = '-';
+		num = -n;
+	}
+	else
+		num = n;
+	if (num == 0)
+		str[0] = '0';
+	str[cont] = '\0';
 	while (num != 0)
 	{
-			num /= 10;
-			cont++;
-	}
-	str = malloc((cont + 1) * sizeof(char *));
-	while (cont != 0)
-	{
-		str[cont - 1] = n % 10 + '0';
-		n = n / 10;
+		str[cont - 1] = (num % 10) + '0';
+		num /= 10;
 		cont--;
 	}
 	return (str);

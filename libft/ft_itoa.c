@@ -11,48 +11,72 @@
 /* ************************************************************************** */
 #include "libft.h"
 
-static unsigned int	ft_tamanyo(int number)
+int	digit_counter(int n)
 {
-	size_t	length;
+	int	i;
+	int	copy;
 
-	length = 0;
-	if (number == 0)
+	i = 0;
+	if (n == 0)
 		return (1);
-	if (number < 0)
-		length += 1;
-	while (number != 0)
+	if (n == -2147483648)
+		return (11);
+	if (n < 0)
 	{
-		number /= 10;
-		length++;
+		n = -n;
+		i++;
 	}
-	return (length);
+	copy = n;
+	while (copy > 0)
+	{
+		copy = copy / 10;
+		i++;
+	}
+	return (i);
+}
+
+int	exp_counter(int n)
+{
+	int	exp;
+	int	digits;
+
+	if (n == 0)
+		return (1);
+	if (n == -2147483648)
+		return (1000000000);
+	digits = digit_counter(n);
+	if (n < 0)
+		digits--;
+	exp = 1;
+	while (--digits)
+		exp = exp * 10;
+	return (exp);
 }
 
 char	*ft_itoa(int n)
 {
-	unsigned int	num;
-	unsigned int	cont;
-	char			*str;
+	char		*str;
+	int			exp;
+	int			i;
+	long int	copy;
 
-	cont = ft_tamanyo(n);
-	str = (char *)malloc((cont + 1) * sizeof(char *));
-	if (str == 0)
-		return (0);
+	copy = (long int)n;
+	exp = exp_counter(n);
+	i = 0;
+	str = malloc(digit_counter(n) + 1);
+	if (!(str))
+		return (NULL);
 	if (n < 0)
 	{
-		str[0] = '-';
-		num = -n;
+		str[i++] = '-';
+		copy = -copy;
 	}
-	else
-		num = n;
-	if (num == 0)
-		str[0] = '0';
-	str[cont] = '\0';
-	while (num != 0)
+	while (exp > 0)
 	{
-		str[cont - 1] = (num % 10) + '0';
-		num /= 10;
-		cont--;
+		str[i++] = (copy / exp) + 48;
+		copy = copy % exp;
+		exp = exp / 10;
 	}
+	str[i] = '\0';
 	return (str);
 }

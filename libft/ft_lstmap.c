@@ -13,44 +13,23 @@
 
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_list	*ret;
-	t_list	*tmp;
+	t_list	*gon;
+	t_list	*aux;
+	t_list	*auxgon;
 
-	ret = 0;
-	if (f == 0 || del == 0)
+	aux = lst;
+	gon = malloc(sizeof(t_list));
+	if (!(gon))
 		return (0);
-	while (lst)
+	auxgon = gon;
+	while (aux)
 	{
-		tmp = ft_lstnew(f(lst->content));
-		if (!tmp)
-		{
-			ft_lstclear(&ret, del);
-			return (0);
-		}
-		ft_lstadd_back(&ret, tmp);
-		lst = lst->next;
+		auxgon->content = f(aux->content);
+		auxgon->next = malloc(sizeof(t_list));
+		if (!(auxgon->next))
+			ft_lstclear(&aux, del);
+		aux = aux->next;
+		auxgon = auxgon->next;
 	}
-	return (ret);
+	return (gon);
 }
-
-	/*if (f == 0 || del == 0 || lst == 0)
-		return (0);
-	primero = 0;
-	while (lst)
-	{
-		nuevo = ft_lstnew(f(lst->content));
-		if (!nuevo)
-		{
-			while (primero)
-			{
-				nuevo = primero->next;
-				del(primero->content);
-				free(primero);
-				primero = nuevo;
-			}
-			lst = 0;
-			return (0);
-		}
-		ft_lstadd_back(&primero, nuevo);
-		lst = lst->next;
-	}*/

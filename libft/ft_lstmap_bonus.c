@@ -1,40 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_lstmap_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gsoteldo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/12 18:50:50 by gsoteldo          #+#    #+#             */
-/*   Updated: 2023/09/27 21:09:43 by gsoteldo         ###   ########.fr       */
+/*   Created: 2023/09/28 18:04:33 by gsoteldo          #+#    #+#             */
+/*   Updated: 2023/09/28 18:04:41 by gsoteldo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void*), void (*del)(void *))
 {
-	size_t	i;
+	t_list	*primera;
+	t_list	*nuevo;
 
-	i = 0;
-	if (!dst && !src)
+	if (f == 0 || del == 0)
 		return (0);
-	if (src < dst)
+	primera = 0;
+	while (lst)
 	{
-		i = len;
-		while (i > 0)
+		nuevo = ft_lstnew((*f)(lst->content));
+		if (!nuevo)
 		{
-			i--;
-			((unsigned char *)dst)[i] = ((unsigned char *)src)[i];
+			while (primera)
+			{
+				nuevo = primera->next;
+				(*del)(primera->content);
+				free(primera);
+				primera = nuevo;
+			}
+			lst = 0;
+			return (0);
 		}
+		ft_lstadd_back(&primera, nuevo);
+		lst = lst->next;
 	}
-	else
-	{
-		i = 0;
-		while (i < len)
-		{
-			((unsigned char *)dst)[i] = ((unsigned char *)src)[i];
-			i++;
-		}
-	}
-	return (dst);
+	return (primera);
 }

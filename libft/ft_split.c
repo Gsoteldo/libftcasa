@@ -13,38 +13,38 @@
 
 static int	numstring(char const *s1, char c)
 {
-	int	comp;
-	int	cles;
+	int	nsubstr;
+	int	aux;
 
-	comp = 0;
-	cles = 0;
+	nsubstr = 0;
+	aux = 0;
 	if (*s1 == '\0')
 		return (0);
 	while (*s1 != '\0')
 	{
 		if (*s1 == c)
-			cles = 0;
-		else if (cles == 0)
+			aux = 0;
+		else if (aux == 0)
 		{
-			cles = 1;
-			comp++;
+			aux = 1;
+			nsubstr++;
 		}
 		s1++;
 	}
-	return (comp);
+	return (nsubstr);
 }
 
 static int	numchar(char const *s2, char c, int i)
 {
-	int	lenght;
+	int	tamanyo;
 
-	lenght = 0;
+	tamanyo = 0;
 	while (s2[i] != c && s2[i] != '\0')
 	{
-		lenght++;
+		tamanyo++;
 		i++;
 	}
-	return (lenght);
+	return (tamanyo);
 }
 
 static char	**freee(char const **dst, int j)
